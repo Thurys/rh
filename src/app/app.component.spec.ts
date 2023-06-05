@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let loader: HarnessLoader;
+  let app_title: string = 'Rockharz Warmup';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,14 +28,14 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Rockharz Warmup'`, () => {
+  it(`should have as title '${ app_title }'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Rockharz Warmup');
+    expect(app.title).toEqual(app_title);
   });
 
-  it('should render title', async () => {
-    const toolbars = await loader.getAllHarnesses(MatToolbarHarness.with({text: 'Rockharz Warmup'}));
+  it('should render a material toolbar containing the title', async () => {
+    const toolbars = await loader.getAllHarnesses(MatToolbarHarness.with({text: app_title}));
 
     expect(toolbars.length).toBe(1);
     expect(await toolbars[0].hasMultipleRows()).toBeFalse();
