@@ -1,3 +1,7 @@
 <mat-toolbar>
-  <span>{{ title }}</span>
+  <span><a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">{{ title }}</a></span>
 </mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

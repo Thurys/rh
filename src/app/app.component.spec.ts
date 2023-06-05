@@ -34,7 +34,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual(app_title);
   });
 
-  it('should render a material toolbar containing the title', async () => {
+  it(`should render a material toolbar containing the title '${ app_title }'`, async () => {
     const toolbars = await loader.getAllHarnesses(MatToolbarHarness.with({text: app_title}));
 
     expect(toolbars.length).toBe(1);
