@@ -1,11 +1,12 @@
-mat-toolbar a, a:visited {
+mat-toolbar a,
+a:visited {
   text-decoration: inherit;
   color: inherit;
   cursor: pointer;
 }
 
 .content {
-  min-height: 100vh;
+  max-height: 100vh;
   padding: 80px 3rem 2rem;
   max-width: 85em;
   margin: 0 auto;
