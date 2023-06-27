@@ -33,9 +33,16 @@ export class VideoPlayerComponent implements AfterContentInit {
     console.log(`Received data: ${this.videoStream}`);
     let url = new URL(this.videoStream?.current_file ?? '', window.location.origin);
     console.log(`URL: ${url}`);
-    this.player.initialize(document.querySelector("#videoPlayer"), url.toString(), true);
-    this.player.seek(100);
-    console.log(`Seek to position ${this.videoStream?.current_time_in_s ?? 0}`);
+
+    let video = <HTMLVideoElement>document.querySelector("#videoPlayer");
+    this.player.on(dashjs.MediaPlayer.events.PLAYBACK_NOT_ALLOWED, (_data: any) => {
+      console.log('Playback did not start due to auto play restrictions. Muting audio and reloading');
+      video.muted = true;
+      this.player.initialize(video, url.toString(), true);
+    });
+
+    this.player.initialize(video, url.toString(), true);
+    this.player.seek(this.videoStream?.current_time_in_s ?? 0);
     this.player.setAutoPlay(true);
     this.player.on('playbackEnded', () => {
       this.player.seek(0);
