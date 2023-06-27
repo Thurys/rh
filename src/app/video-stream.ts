@@ -1,5 +1,6 @@
 export interface VideoStream {
   current_file: string,
-  time: number,
+  duration: number,
+  current_time_in_s: number,
   next_file: string,
 }
